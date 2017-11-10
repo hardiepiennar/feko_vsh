@@ -137,8 +137,8 @@ def calc_total_power(farfield):
 	Returns:
 		farfield - farfield scalar power values
 	"""
-    tot_power = np.sum(np.power(farfield[1], 2)) / 2
-    return tot_power
+	tot_power = np.sum(np.power(farfield[1], 2)) / 2
+	return tot_power
 
 
 def truncate_modes_at_power_fraction(farfield, fraction):
@@ -155,13 +155,13 @@ def truncate_modes_at_power_fraction(farfield, fraction):
 		truncated spherical mode data
 
 	"""
-    tot_power = calc_total_power(farfield)
-    acc_power = 0
-    index = 0
-    while acc_power / tot_power < fraction:
-        acc_power += np.sum(np.power(farfield[1, index], 2)) / 2
-        index += 1
-    return farfield[:, 0:index+1], index
+	tot_power = calc_total_power(farfield)
+	acc_power = 0
+	index = 0
+	while acc_power / tot_power < fraction:
+	    acc_power += np.sum(np.power(farfield[1, index], 2)) / 2
+	    index += 1
+	return farfield[:, 0:index+1], index
 
 
 def calc_gain(farfield, E):
@@ -175,10 +175,10 @@ def calc_gain(farfield, E):
 	Returns:
 		farfield gain 
 	"""
-    Pt = calc_total_power(farfield)
-    Ud = (np.abs(E) ** 2) / 376.730
-    Um = Pt / (2 * np.pi) # For a halfsphere
+	Pt = calc_total_power(farfield)
+	Ud = (np.abs(E) ** 2) / 376.730
+	Um = Pt / (2 * np.pi) # For a halfsphere
 
-    return Ud / Um
+	return Ud / Um
 
 
